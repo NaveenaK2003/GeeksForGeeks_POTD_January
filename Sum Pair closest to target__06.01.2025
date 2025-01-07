@@ -1,0 +1,44 @@
+
+
+// User function Template for Java
+
+class Solution {
+    public List<Integer> sumClosest(int[] arr, int target) {
+        // code here
+        int n=arr.length;
+        ArrayList<Integer> list=new ArrayList<>();
+        if(n<=1)
+        return list;
+        int diff=Integer.MAX_VALUE;
+        Arrays.sort(arr);
+        int a=arr[0];
+        int b=arr[n-1];
+
+        int i=0;
+        int j=n-1;
+        while(i<j){
+            int sum=arr[i]+arr[j];
+            int curDiff=Math.abs(sum-target);
+            if(diff == curDiff){
+                if(Math.abs(arr[i]-arr[j])>Math.abs(a-b)){
+                    a=arr[i];
+                    b=arr[j];
+                }
+            }
+            else if(curDiff<diff){
+                diff=curDiff;
+                a=arr[i];
+                b=arr[j];
+            }
+            if(target<sum)
+            j--;
+            else
+            i++;
+            
+        }
+        list.add(a);
+        list.add(b);
+        return list;
+        
+    }
+}
